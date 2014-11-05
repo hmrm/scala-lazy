@@ -14,7 +14,7 @@ package object Lazy {
   }
 
   implicit object lazyConversions {
-    implicit def strictToLazy[A](a: A): Lazy[A] = new Lazy(a)
+    implicit def strictToLazy[A](a: => A): Lazy[A] = new Lazy(a)
     implicit def lazyToStrict[A](a: Lazy[A]): A = a()
   }
 }
